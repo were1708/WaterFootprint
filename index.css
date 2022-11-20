@@ -2,3 +2,48 @@ h1 {
     color: blue;
     text-align: center
 }
+
+.note {
+    background-color: aliceblue;
+    position: relative;
+    right: 0px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.note h4 {
+    font-weight: bold
+}
+
+.note p {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.author {
+    line-height: 1;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    padding: 0px;
+}
+
+.left,
+.right {
+    width: 25%;
+}
+
+.middle1,
+.middle2 {
+    width: 25%;
+}
