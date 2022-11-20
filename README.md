@@ -3,7 +3,8 @@
 
 ## Files:
 1. index.html (esentially empty)
-2. water.csv (just all the data so far)
+2. index.css (styling)
+3. water.csv (just all the data so far)
 
 ### notes:
 
