@@ -20,3 +20,7 @@
 
 * I hope everyone knows how to use git with branches n stuff!
 
+* what version of d3 should we use? 
+    * I'm thinking v4 so I'll import that
+    * We can change if needed!
+
