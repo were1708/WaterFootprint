@@ -1,6 +1,6 @@
 # Water footprint!
 ### Current as of 11/19/2022
-</br>
+
 ## Files:
 1. index.html (esentially empty)
 2. water.csv (just all the data so far)
