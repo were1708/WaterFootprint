@@ -47,3 +47,7 @@ h1 {
 .middle2 {
     width: 25%;
 }
+
+.dot {
+    stroke: #000;
+  }
