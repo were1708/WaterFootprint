@@ -6,17 +6,17 @@ function rowConverter(data) {
     }
 }
 
-var margin = {left: 80, right: 80, top: 50, bottom: 50 }, 
-width = 960 - margin.left -margin.right,
-height = 500 - margin.top - margin.bottom;
+var margin = {left: 80, right: 80, top: 50, bottom: 50 };
+width = 960 - margin.left -margin.right;
+height = 600 - margin.top - margin.bottom;
 
 
-var svg = d3.select('#svg1')
+var svgScatter = d3.select("#svg1")
 .append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
-.append("g")
-.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// .append("g")
+// .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
     // initilize some empty arrays to populate with values!
@@ -37,8 +37,9 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var yScale = d3.scaleLinear()
         .domain([0,d3.max(percentage) + 10]) // defines the domain by finding the max of eccs
         .range([height, 0]);
-        console.log(data)
-        var view = svg.selectAll(".dot")
+
+
+        var view = svgScatter.selectAll(".dot")
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
@@ -50,12 +51,12 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
 
         // x-axis
-        var gX = svg.append("g")
+        var gX = svgScatter.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
 
-        svg.append("text")
+        svgScatter.append("text")
         .attr("class", "x label")
         .attr("y", height + 30)
         .attr("x", width/2)
@@ -65,10 +66,10 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .text("GDP (in Trillion US Dollars) in 2010");
 
         // y-axis
-        var gY = svg1.append("g")
+        var gY = svgScatter.append("g")
         .attr("class", "y axis")
         .call(yAxis)
-        svg.append("text")
+        svgScatter.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
         .attr("y", -50)
