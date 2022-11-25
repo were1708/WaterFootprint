@@ -18,7 +18,7 @@ var svgScatter = d3.select("#svg1")
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var div = d3.select("#svg1")
+var div = d3.select("#div1") 
 .append("div")	
 .attr("class", "tooltip")				
 .style("opacity", 0);
@@ -58,12 +58,12 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             
             div.html( // html for the tool tip
             "<table>" + "<td colspan = 3 style = 'text-align:center'>" + d.food + "</td>" + " </tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'Population' + "</td>" +
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Percentage' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + d.waterPercentage + " Million" + "</td>" + "</tr>" 
+            "<td style = 'text-align:right'>" + d.waterPercentage + " %" + "</td>" + "</tr>" 
             + "<tr>" + "<td style = 'text-align:left'>" + 'GDP' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + "$" + d.waterFootprint + " Trillion" + "</td>" + "</tr>" + "</tr>"
+            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons per pound of yield" + "</td>" + "</tr>" + "</tr>"
             )
             .style("left", (d3.event.pageX) + "px")		
             .style("top", (d3.event.pageY - 28) + "px");
