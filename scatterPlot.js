@@ -18,6 +18,11 @@ var svgScatter = d3.select("#svg1")
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var div = d3.select("#svg1")
+.append("div")	
+.attr("class", "tooltip")				
+.style("opacity", 0);
+
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
     // initilize some empty arrays to populate with values!
     percentage = []
@@ -45,7 +50,33 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             .attr("class", "dot")
             .attr("r", 5)
             .attr("cx", function(d) {return xScale(d.waterFootprint);})
-            .attr("cy", function(d) {return yScale(d.waterPercentage);});
+            .attr("cy", function(d) {return yScale(d.waterPercentage);})
+            .on("mouseover", function(d) { // mouse over for tool tip
+            div.transition()
+            .duration(200)
+            .style("opacity", .9) // makes the div visible 
+            
+            div.html( // html for the tool tip
+            "<table>" + "<td colspan = 3 style = 'text-align:center'>" + d.food + "</td>" + " </tr>" 
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Population' + "</td>" +
+            "<td style = 'text-align:center'>" + ':' + "</td>" + 
+            "<td style = 'text-align:right'>" + d.waterPercentage + " Million" + "</td>" + "</tr>" 
+            + "<tr>" + "<td style = 'text-align:left'>" + 'GDP' + "</td>" +
+            "<td style = 'text-align:center'>" + ':' + "</td>" + 
+            "<td style = 'text-align:right'>" + "$" + d.waterFootprint + " Trillion" + "</td>" + "</tr>" + "</tr>"
+            )
+            .style("left", (d3.event.pageX) + "px")		
+            .style("top", (d3.event.pageY - 28) + "px");
+            })
+
+            .on("mouseout", function(d) { // when the mouse leaves the country entry
+                div.transition()		
+                .duration(500)		
+                .style("opacity", 0); // this hides the div            
+               });
+
+
+            
 
         var xAxis = d3.axisBottom(xScale).tickPadding(2);
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
