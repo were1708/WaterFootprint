@@ -6,7 +6,7 @@ function rowConverter(data) {
     }
 }
 
-var margin = {left: 80, right: 80, top: 50, bottom: 50 };
+var margin = {left: 100, right: 80, top: 50, bottom: 50 };
 width = 960 - margin.left -margin.right;
 height = 600 - margin.top - margin.bottom;
 
@@ -50,6 +50,11 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var xAxis = d3.axisBottom(xScale).tickPadding(2);
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
 
+
+        var zoom = d3.zoom()
+        .scaleExtent([.5, 32])
+        .on("zoom", zoomed);
+
         // x-axis
         var gX = svgScatter.append("g")
         .attr("class", "x axis")
@@ -79,4 +84,17 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .style("text-anchor", "end")
         .attr("font-size", "12px")
         .text("Energy Consumption per Capita (in Million BTUs per person)");
+
+
+        svgScatter.call(zoom);
+
+        function zoomed() {
+            view.attr("transform", d3.event.transform); // moves the circles
+            var new_xScale = d3.event.transform.rescaleX(xScale);
+            var new_yScale = d3.event.transform.rescaleY(yScale);
+            gX.call(xAxis.scale(new_xScale));
+            gY.call(yAxis.scale(new_yScale));
+            gX.call(xAxis.scale(d3.event.transform.rescaleX(xScale))); // scales the x axis while zooming and moving
+            gY.call(yAxis.scale(d3.event.transform.rescaleY(yScale))); // scales the y axis while zooming and moving
+          }
 });
