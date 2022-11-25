@@ -15,8 +15,8 @@ var svgScatter = d3.select("#svg1")
 .append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
-// .append("g")
-// .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
     // initilize some empty arrays to populate with values!
@@ -68,7 +68,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         // these lines position the label
         .style("text-anchor", "middle")
         .attr("font-size", "12px")
-        .text("GDP (in Trillion US Dollars) in 2010");
+        .text("Gallons per pound of yield");
 
         // y-axis
         var gY = svgScatter.append("g")
@@ -83,7 +83,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .attr("font-size", "12px")
-        .text("Energy Consumption per Capita (in Million BTUs per person)");
+        .text("Percentage of total water usage");
 
 
         svgScatter.call(zoom);
