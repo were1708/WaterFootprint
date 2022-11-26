@@ -14,7 +14,7 @@
 <svg width="960" length="600"></svg>
 <!-- palce holder for first visualization! ^ -->
 
-<svg width="960" length="600"></svg>
+<!--<svg width="960" length="600"></svg>-->
   <p>Second Visualization: Amount of macro-nutrients per gallon of water</p>
 <!--
   <table>
@@ -35,12 +35,13 @@
     </tr>
   </table>
 -->
-  <button type="button" name="fat">Fat</button>
-  <button type="button" name="fiber">Fiber</button>
-  <button type="button" name="cal">Calories</button>
-  <button type="button" name="protein">Protein</button>
-  <button type="button" name="mass">Mass</button>
+  <button type="button" onclick="update('Fat')" id="fat" name="fat">Fat</button>
+  <button type="button" onclick="update('Fiber')" id="fiber" name="fiber">Fiber</button>
+  <button type="button" onclick="update('Calories')" id="cal" name="cal">Calories</button>
+  <button type="button" onclick="update('Protein')" id="protein" name="protein">Protein</button>
+  <button type="button" onclick="update('Mass')" id="mass" name="mass">Mass</button>
   <script type="text/javascript" src="barGraph.js"></script>   
+    
     <!-- palce holder for second visualization! ^ -->
 
 <svg width="960" length="600"></svg>    
