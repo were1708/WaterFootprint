@@ -48,6 +48,27 @@ h1 {
     width: 25%;
 }
 
+
+.button {
+    background-color: #482475;
+    border-color: #440154;
+    border-radius: 10px;
+    width: 70px;
+    height: 30px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.button:hover{
+    background-color:#2a788e;
+     border-color: #355f8d;
+}
+
+.button:focus{
+    background-color:#bddf26;
+    border-color: #7ad151;
+    color: #482475;
+
 .dot {
     stroke: #000;
   }

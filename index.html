@@ -15,8 +15,13 @@
 <svg width="960" height="600" id="svg1"></svg>
 </div>
 <!-- palce holder for first visualization! ^ -->
+
+
+<!--<svg width="960" length="600"></svg>-->
+
 <script type="text/javascript" src="scatterPlot.js"></script>  
 <svg width="970" height="600" id="svg2"></svg>
+
   <p>Second Visualization: Amount of macro-nutrients per gallon of water</p>
 <!--
   <table>
@@ -37,12 +42,16 @@
     </tr>
   </table>
 -->
-  <button type="button" name="fat">Fat</button>
-  <button type="button" name="fiber">Fiber</button>
-  <button type="button" name="cal">Calories</button>
-  <button type="button" name="protein">Protein</button>
-  <button type="button" name="mass">Mass</button>
-  <script type="text/javascript" src="barGraph.js"></script>   
+    <div class="row">
+      <button type="button" onclick="update('Fat')" class="button" name="fat">Fat</button>
+      <button type="button" onclick="update('Fiber')" class="button" name="fiber">Fiber</button>
+      <button type="button" onclick="update('Calories')" class="button" name="cal">Calories</button>
+      <button type="button" onclick="update('Protein')" class="button" name="protein">Protein</button>
+      <button type="button" onclick="update('Mass')" class="button" name="mass">Mass</button>
+        
+      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+      <script type="text/javascript" src="barGraph.js"></script>   
+    </div>
     <!-- palce holder for second visualization! ^ -->
 
 <svg width="960" height="600"></svg>    

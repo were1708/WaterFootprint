@@ -1,21 +1,49 @@
-var margin = {top: 10, right: 40, bottom: 100, left: 89};
-var width = 890 - margin.left - margin.right;
-var height = 600 - margin.top - margin.bottom;
-var svg = d3.select("#svg2")
-    .append("svg")
+//
+// References:
+// interpolated colors: https://d3-graph-gallery.com/graph/custom_color.html
+// animated bar chart: https://d3-graph-gallery.com/graph/barplot_button_data_csv.html
+//
+
+var margin = {top: 10, right: 40, bottom: 150, left: 100},
+    width = 760 - margin.left - margin.right, 
+    height = 500 - margin.top - margin.bottom; 
+    
+var svg = d3.select("body").append("svg")
+
     .attr("width", width + margin.left + margin.right) 
     .attr("height", height + margin.top + margin.bottom) 
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
 
-// range represents the biggest values on the left and the smallest values on the right
 var yScale = d3.scaleLinear().range([height, 0]);
 
-// Define X and Y AXIS
+// define the axes
 var xAxis = d3.axisBottom(xScale);
 
-var yAxis = d3.axisLeft(yScale).ticks(5, "$5f");
+var yAxis = d3.axisLeft(yScale);
 
+// placeholder for drawing the yAxis
+var yAxisDraw = svg.append("g").attr("class", "myYaxis")
+
+// Draws the y axis label
+  var yAxisLabel = svg.append("text")
+        .attr("class", "ylabel")
+        .attr("text-anchor", "end")
+        .attr("y", -50) 
+        .attr("x", -100)
+        .attr("font-size", "12px")
+        .attr("transform", "rotate(-90)") 
+        .text("Amount of Calories per 50 gallons of water"); 
+
+const div = d3
+  .select('body')
+  .append('div')
+  .attr('class', 'tooltip')
+  .style('opacity', 0);
+
+// data collected from csv file
 function rowConverter(data) {
     return {
         food : data.Food,
@@ -27,65 +55,111 @@ function rowConverter(data) {
     } 
 }
 
+// used to draw the x axis using the csv file data
 d3.csv("barGraphData.csv", rowConverter, function(error, data) {
-//d3.csv("barGraphData.csv",rowConverter).then(function(data){
-  
-  xScale.domain(data.map(function(d){ return d.food; }));
-  yScale.domain([0,d3.max(data, function(d) {return d.mass; })]);
-  
-  var colorGrad = d3.scaleLinear().domain([1,2])
-  .range(["orange", "#db7093"])
-  
-  // draw bars 
-  svg.selectAll("rect") // creates an svg for rectangles
-        .data(data) // load the data
-        .enter()
-        .append("rect") // shape of the bars
-        .transition().duration(500) // animation
-       .delay(function(d,i) {return i * 100;}) // animation timing delay
-        .attr("x", function(d) { // returns the x values for the bars in the bar chart
-            return xScale(d.food);
-        })
-        .attr("y", function(d) { // returns the y values for the bars in the bar chart
-            return yScale(d.mass); 
-        })
-        .attr("width", xScale.bandwidth()) // width of each bar
-        .attr("height", function(d) {
-			 return height- yScale(d.mass); // height of each bar
-        })
-        .attr("fill", function(d){return colorGrad(d.mass); 
-        });
-  
-  
-  svg.append("g") 
-        .attr("class", "x axis")
+    // defines the x axis domain
+    xScale.domain(data.map(function(d){ return d.food; }));
+    // draws the x axis
+    svg.append("g") 
+        .attr("class", "xaxis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
         .selectAll("text")
-        .attr("dx", "-.8em") // styling of the x axis labels
+        .attr("dx", "-.8em")
         .attr("dy", ".25em")
         .style("text-anchor", "end")
         .attr("font-size", "10px")
         .attr("transform", "rotate(-60)");
-        
-//    
-//    // Draw yAxis and position the label
-//    svg.append("g")
-//        .attr("class", "y axis")
-//        .attr("transform", "translate(0," - height + ")")
-//        .call(yAxis)
-//        .selectAll("text")
-//        .style("text-anchor", "end")
-//        .attr("font-size", "10px");
-  
-  
-  // y axis label
-  svg.append("text")
-        .attr("class", "y label")
-        .attr("text-anchor", "end")
-        .attr("y", 20) // position
-        .attr("x", -100)
-        .attr("transform", "rotate(-90)") // rotates the label
-        .text("Amount of ___ per 50 gallons of water"); // EDIT THIS LATER WITH TOOLTIP
-  
 });
+
+// defines the color scheme of the graph
+var colorGrad = d3.scaleSequential().domain([1,0])
+  .interpolator(d3.interpolateViridis);
+//    d3.scaleLinear().domain([1,10])
+//  .range(["orange", "#db7093"])
+
+
+// update function that is called when a button is pressed
+function update(id) {
+    yAxisLabel.remove()
+    // calls the csv file data
+    d3.csv("barGraphData.csv", function(data) {
+        // defines the domain of the x axis
+        xScale.domain(data.map(function(d){ return d.Food; }));
+        // defines the domain of the y axis, from 0 to the max value
+        yScale.domain([0,d3.max(data, function(d) {return +d[id] })]);
+        
+        // bright colors: purple, blue, teal, green, yellow
+        var color = d3.scaleSequential().domain([1,d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolateViridis);
+        
+        yAxisLabel = svg.append("text")
+        .attr("class", "ylabel")
+        .attr("text-anchor", "end")
+        .attr("y", -50) 
+        .attr("x", -50)
+        .attr("font-size", "13px")
+        .attr("transform", "rotate(-90)") 
+        .text("Amount of " +id+ " per 50 gallons of water"); 
+        
+        // draws the y axis for transitions between buttons
+        yAxisDraw.transition().duration(1000).call(d3.axisLeft(yScale));
+        
+        // temporary placeholder for chart drawing
+        var drawChart = svg.selectAll("rect").data(data)
+    
+        var mouseover = function(d) {
+            div
+                    .transition()
+                    .duration(200)
+                    .style('opacity', 0.9);
+                  div 
+                      .html(id)
+            
+        }
+        // draws the bar chart
+        drawChart
+            .enter()
+            .append("rect")
+        .merge(drawChart) // used for transitions between buttons
+            .transition()
+            .duration(1000)
+            .attr("x", function(d) { return xScale(d.Food); })
+            .attr("y", function(d) { return yScale(d[id]); })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function(d) { return height - yScale(d[id]); })
+            .attr("fill", function(d){return color(d[id]);})
+            .style('cursor', 'pointer') 
+        drawChart
+            .merge(drawChart) // used for transitions between buttons
+            .transition()
+            .duration(1000)
+            .attr("x", function(d) { return xScale(d.Food); })
+            .attr("y", function(d) { return yScale(d[id]); })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function(d) { return height - yScale(d[id]); })
+            .attr("fill", function(d){return color(d[id]);})
+            .style('cursor', 'pointer') 
+        
+        drawChart.on('mouseover', function(d, i){
+            div
+            .transition()
+            .duration(200)
+            .style('opacity', 0.9);
+            div 
+            .html("<table>" 
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + "</td>" + " </tr>"  
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d[id] + "</td>" + " </tr>" )
+            .style('left', d3.event.pageX + 'px')
+            .style('top', d3.event.pageY - 28 + 'px');
+        })
+        .on('mouseout', function(d, i){
+            div
+            .transition()
+            .duration(500)
+            .style('opacity', 0);
+        });
+    })
+}
+
+update('Calories')
+
