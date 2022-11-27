@@ -37,10 +37,10 @@ var yAxisDraw = svg.append("g").attr("class", "myYaxis")
         .attr("transform", "rotate(-90)") 
         .text("Amount of Calories per 50 gallons of water"); 
 
-const div = d3
+const div2 = d3
   .select('body')
-  .append('div')
-  .attr('class', 'tooltip')
+  .append('div2')
+  .attr('class', 'tooltip2')
   .style('opacity', 0);
 
 // data collected from csv file
@@ -108,11 +108,11 @@ function update(id) {
         var drawChart = svg.selectAll("rect").data(data)
     
         var mouseover = function(d) {
-            div
+            div2
                     .transition()
                     .duration(200)
                     .style('opacity', 0.9);
-                  div 
+                  div2 
                       .html(id)
             
         }
@@ -141,11 +141,11 @@ function update(id) {
             .style('cursor', 'pointer') 
         
         drawChart.on('mouseover', function(d, i){
-            div
+            div2
             .transition()
             .duration(200)
             .style('opacity', 0.9);
-            div 
+            div2
             .html("<table>" 
                 + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + "</td>" + " </tr>"  
                 + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d[id] + "</td>" + " </tr>" )
@@ -153,7 +153,7 @@ function update(id) {
             .style('top', d3.event.pageY - 28 + 'px');
         })
         .on('mouseout', function(d, i){
-            div
+            div2
             .transition()
             .duration(500)
             .style('opacity', 0);
