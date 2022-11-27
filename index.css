@@ -48,17 +48,6 @@ h1 {
     width: 25%;
 }
 
-div.tooltip {
-  color: white;
-  position: absolute;
-  text-align: left;
-  width: 80px;
-  height: 50px;
-  font: 12px sans-serif;
-  background: rgba(0,0,0,.8);
-  border: 2px solid black;
-  pointer-events: none;
-}
 
 .button {
     background-color: #482475;
@@ -79,4 +68,18 @@ div.tooltip {
     background-color:#bddf26;
     border-color: #7ad151;
     color: #482475;
+
+.dot {
+    stroke: #000;
+  }
+
+div.tooltip {	
+    position: absolute;			
+    width: 350x;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
 }
