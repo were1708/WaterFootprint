@@ -36,11 +36,11 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
 
         //Define Scales   
         var xScale = d3.scaleLinear()
-        .domain([0, d3.max(footprints) + 3]) // defines the domain by finding the max of the gdps
+        .domain([0, d3.max(footprints) + 3]) // defines the domain by finding the max of the footprints
         .range([0, width]);
         
         var yScale = d3.scaleLinear()
-        .domain([0,d3.max(percentage) + 10]) // defines the domain by finding the max of eccs
+        .domain([0,d3.max(percentage) + 10]) // defines the domain by finding the max of percentages
         .range([height, 0]);
 
 
@@ -69,7 +69,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             .style("top", (d3.event.pageY - 28) + "px");
             })
 
-            .on("mouseout", function(d) { // when the mouse leaves the country entry
+            .on("mouseout", function(d) { // when the mouse leaves the food entry
                 div.transition()		
                 .duration(500)		
                 .style("opacity", 0); // this hides the div            
