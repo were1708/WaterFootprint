@@ -147,7 +147,8 @@ function update(id) {
             .style('opacity', 0.9);
             div2
             .html("<table>" 
-                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + "</td>" + " </tr>"  
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + " in " + "</td>" + " </tr>"  
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d.Food + ": </td>" + " </tr>"
                 + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d[id] + "</td>" + " </tr>" )
             .style('left', d3.event.pageX + 'px')
             .style('top', d3.event.pageY - 28 + 'px');
