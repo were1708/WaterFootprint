@@ -20,7 +20,7 @@ var svgScatter = d3.select("#svg1")
 
 var div = d3.select("#div1") 
 .append("div")	
-.attr("class", "tooltip")				
+.attr("class", "tooltip")
 .style("opacity", 0);
 
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
