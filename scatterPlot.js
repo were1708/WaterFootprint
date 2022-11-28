@@ -61,7 +61,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             + "<tr>" + "<td style = 'text-align:left'>" + 'Percentage' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
             "<td style = 'text-align:right'>" + d.waterPercentage + " %" + "</td>" + "</tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'GDP' + "</td>" +
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Gallons for a pound of yield' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
             "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons per pound of yield" + "</td>" + "</tr>" + "</tr>"
             )
