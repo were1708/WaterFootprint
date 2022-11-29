@@ -28,7 +28,7 @@ var yAxis = d3.axisLeft(yScale);
 var yAxisDraw = svg.append("g").attr("class", "myYaxis")
 
 // Draws the y axis label
-  var yAxisLabel = svg.append("text")
+var yAxisLabel = svg.append("text")
         .attr("class", "ylabel")
         .attr("text-anchor", "end")
         .attr("y", -50) 
@@ -36,6 +36,8 @@ var yAxisDraw = svg.append("g").attr("class", "myYaxis")
         .attr("font-size", "12px")
         .attr("transform", "rotate(-90)") 
         .text("Amount of Calories per 50 gallons of water"); 
+
+var formatDecimal = d3.format(",.2f");
 
 const div2 = d3
   .select('body')
@@ -84,6 +86,17 @@ function update(id) {
     yAxisLabel.remove()
     // calls the csv file data
     d3.csv("barGraphData.csv", function(data) {
+        
+        // identifies which units to add depending on the button pressed
+        var units = "";
+        if (id == "Mass") {
+            units = "lbs/50gal"
+        } else if (id == "Calories") {
+            units = "cal/50gal"
+        } else {
+            units = "grams/50gal"
+        }
+        
         // defines the domain of the x axis
         xScale.domain(data.map(function(d){ return d.Food; }));
         // defines the domain of the y axis, from 0 to the max value
@@ -116,20 +129,11 @@ function update(id) {
                       .html(id)
             
         }
+        
+        
         // draws the bar chart
         drawChart
-            .enter()
-            .append("rect")
-        .merge(drawChart) // used for transitions between buttons
-            .transition()
-            .duration(1000)
-            .attr("x", function(d) { return xScale(d.Food); })
-            .attr("y", function(d) { return yScale(d[id]); })
-            .attr("width", xScale.bandwidth())
-            .attr("height", function(d) { return height - yScale(d[id]); })
-            .attr("fill", function(d){return color(d[id]);})
-            .style('cursor', 'pointer') 
-        drawChart
+        .enter().append("rect")
             .merge(drawChart) // used for transitions between buttons
             .transition()
             .duration(1000)
@@ -140,6 +144,7 @@ function update(id) {
             .attr("fill", function(d){return color(d[id]);})
             .style('cursor', 'pointer') 
         
+        
         drawChart.on('mouseover', function(d, i){
             div2
             .transition()
@@ -149,7 +154,9 @@ function update(id) {
             .html("<table>" 
                 + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + " in " + "</td>" + " </tr>"  
                 + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d.Food + ": </td>" + " </tr>"
-                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d[id] + "</td>" + " </tr>" )
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + formatDecimal(d[id]) + "</td>" + " </tr>" 
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + units + "</td>" + " </tr>" 
+                 )
             .style('left', d3.event.pageX + 'px')
             .style('top', d3.event.pageY - 28 + 'px');
         })
@@ -159,8 +166,9 @@ function update(id) {
             .duration(500)
             .style('opacity', 0);
         });
+
     })
 }
 
-update('Calories')
-
+update('Mass')
+update('Mass')
