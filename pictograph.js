@@ -7,7 +7,7 @@ var makeVis = function(data) {
     console.log(data)    
 
     //create svg element
-    var svg=d3.select("body").append("svg").attr("viewBox","0 0 660 660");
+    var svg=d3.select("#svg2").append("svg").attr("viewBox","0 0 660 660");
 
      //define an icon store it in svg <defs> elements as a reusable component - this geometry can be generated from Inkscape, Illustrator or similar
     svg.append("defs")
@@ -19,7 +19,7 @@ var makeVis = function(data) {
 
 
     //background rectangle
-    svg.append("rect").attr("width",660).attr("height",660);
+    svg.append("rect").attr("fill","#fff1e0").attr("width",660).attr("height",660);
 
     //specify the number of columns and rows for pictogram layout
     var numCols = 20;
@@ -44,11 +44,13 @@ var makeVis = function(data) {
         .attr("x",430)
         .attr("y",0)
         .attr("dy",95)
+        .attr("fill", "#bb6d82")
         .text("482")
         .attr("transform", "translate(0,0) scale(1, 3)");
     
     
     svg.append("text")
+        .attr("id","txtState")
         .attr("x",xPadding)
         .attr("y",yPadding)
         .attr("dy",30)

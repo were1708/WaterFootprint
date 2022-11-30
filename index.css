@@ -3,6 +3,39 @@ h1 {
     text-align: center
 }
 
+
+
+.iconPlain  {
+    fill: rgba(65, 106, 156, 0.5);
+}
+
+.iconSelected  {
+    fill:#bb6d82;   
+}
+
+.number  {
+    fill:#bb6d82;   
+    font-size:90px;
+    text-align: center;
+    text-anchor:center;
+}
+#txtName    {
+    fill:#bb6d82;
+    text-anchor:left;
+    font-size:22px;
+    font-family:sans-serif,Helvetica,Arial;
+    font-weight:bold;
+}
+
+#txtState   {
+    fill:#bb6d82;
+    text-anchor:left;
+    font-size:22px;
+    font-family:sans-serif,Helvetica,Arial;
+    font-weight:bold;
+}
+
+
 .note {
     background-color: aliceblue;
     position: relative;
@@ -97,3 +130,21 @@ div2.tooltip2 {
   }
 
 
+  #sliderDiv  {
+    margin:10px;
+    margin-top:30px;
+    height:15px;
+    width:300px;
+}
+
+#svg2 {
+    padding:10px;
+    float:left;
+}
+
+
+
+
+rect    {
+    fill:#fff1e0;   
+}
