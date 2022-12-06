@@ -124,13 +124,13 @@ div2.tooltip2 {
     background-color:#bddf26;
     border-color: #7ad151;
     color: #482475;
-
+}
 .dot {
     stroke: #000;
   }
 
 
-  #sliderDiv  {
+#sliderDiv  {
     margin:10px;
     margin-top:30px;
     height:15px;
@@ -139,12 +139,28 @@ div2.tooltip2 {
 
 #svg2 {
     padding:10px;
-    float:left;
+    /* float:left; */
 }
-
-
-
 
 rect    {
     fill:#fff1e0;   
 }
+
+/* css to create grid */
+.container {  display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "top_left top_right"
+      "bottom bottom";
+  }
+  
+  .top_left { grid-area: top_left; }
+  
+  .top_right { grid-area: top_right; }
+  
+  .bottom { grid-area: bottom; }
+  

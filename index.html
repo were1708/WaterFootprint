@@ -2,39 +2,39 @@
 <html>
 
 <head>
-<title>Water Footprints</title> <!--  Place holder title!  --> 
-<link rel="stylesheet" type="text/css" href="index.css">
+    <title>Water Footprints</title> <!--  Place holder title!  -->
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
-<script type= "text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <h1>Water Footprint</h1>
+    <div class="container">
+        <div class="top_left">
+            <div>
+                <button class="button">Carb</button>
+                <button class="button">Protein</button>
+                <button class="button">Fat</button>
+            </div>
+            <div id="div1">
+                <!-- this viz needs to be in a div for tooltip to work -->
+                <svg width="960" height="600" id="svg1"></svg>
+                <!-- NOTES:
+          Take the zoom out feature out!
+          remember we need to filter feature!
+          we also need to have images for each node some how!
+        -->
+            </div>
 
-
-<h1>Water Footprint</h1>
-<div>
-<button class="button">Carb</button>
-<button class="button">Protein</button>
-<button class="button">Fat</button>
-</div>
-<div id="div1"> <!-- this viz needs to be in a div for tooltip to work -->
-<svg width="960" height="600" id="svg1"></svg>
-<!-- NOTES:
-  Take the zoom out feature out!
-  remember we need to filter feature!
-  we also need to have images for each node some how!
--->
-</div>
-<!-- palce holder for first visualization! ^ -->
-
-
-<!--<svg width="960" length="600"></svg>-->
-
-<script type="text/javascript" src="scatterPlot.js"></script>  
-
-
-  <p>Second Visualization: Amount of macro-nutrients per 50 gallons of water</p>
-    <p>With 50 gallons of water, how much of each food can be produced? Compare how many calories and grams of protein/fat/fiber you would get from this amount of food. </p>
-<!--
+            <script type="text/javascript" src="scatterPlot.js"></script>
+        </div>
+        <div class="top_right">
+            <p>Second Visualization: Amount of macro-nutrients per 50 gallons of water</p>
+            <p>With 50 gallons of water, how much of each food can be produced? Compare how many calories and grams of
+                protein/fat/fiber you would get from this amount of food. </p>
+            <!--
   <table>
     <tr>
       <td><button type="button" name="fat">Fat</button></td>
@@ -53,71 +53,77 @@
     </tr>
   </table>
 -->
-    <div class="row">
-      <button type="button" onclick="update('Fat')" class="button" name="fat">Fat</button>
-      <button type="button" onclick="update('Fiber')" class="button" name="fiber">Fiber</button>
-      <button type="button" onclick="update('Calories')" class="button" name="cal">Calories</button>
-      <button type="button" onclick="update('Protein')" class="button" name="protein">Protein</button>
-      <button type="button" onclick="update('Mass')" class="button" name="mass">Mass</button>
-        
-      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-      <script type="text/javascript" src="barGraph.js"></script>   
-    </div>
-    <!-- palce holder for second visualization! ^ -->
+            <div class="row">
+                <button type="button" onclick="update('Fat')" class="button" name="fat">Fat</button>
+                <button type="button" onclick="update('Fiber')" class="button" name="fiber">Fiber</button>
+                <button type="button" onclick="update('Calories')" class="button" name="cal">Calories</button>
+                <button type="button" onclick="update('Protein')" class="button" name="protein">Protein</button>
+                <button type="button" onclick="update('Mass')" class="button" name="mass">Mass</button>
 
-<svg width="660" height="660" id="svg2"></svg>
-<div id="vis-container"></div>
-<script type="text/javascript" src="pictograph.js"></script>
-    <!-- palce holder for third visualization! ^ -->
+                <svg width="960" height="600" id="svg3"></svg>
+                <script type="text/javascript" src="barGraph.js"></script>
+            </div>
 
-<div class="note">
-    <div class="author">
-        <h4><br>Created by</h4>
-        <p>
-            Fernando Rivero Chau (friveroc@ucsc.edu)<br>
-            Mominah Khan (motkhan@ucsc.edu)<br>
-            Mrinmoyee Mishra (mrmishra@ucsc.edu)<br>
-            Joshua Revilla (jtrevill@ucsc.edu)<br>
-            in collaboration with Suresh K Lodha</p>
-        <p>Github Link: <a href="https://github.com/were1708/WaterThose">https://github.com/were1708/WaterThose</a>
-        </p>
-        <h4><br>Designed for</h4>
-        <p>CSE 163: Data Programming for Visualization, Fall 2022</p>
-    </div>
-
-
-    <div class="row">
-        <div class="column left">
-            <b>Files Submitted</b>
-            <p>index.html<br>index.css</p>
         </div>
-        <div class="column middle1">
-            <b>Data Sources</b>
-            <p>
-                <a href="https://waterfootprint.org/media/downloads/Mekonnen-Hoekstra-2011-WaterFootprintCrops.pdf">The water
-                    footprint of crops and derived crop products</a>
-                <br>
-                <a href="https://waterfootprint.org/media/downloads/Mekonnen-Hoekstra-2012-WaterFootprintFarmAnimalProducts.pdf">Water
-                    Footprint of Farm Animal Products</a>
-                <br>
-                <a href="https://www.nutritionvalue.org"> Nutrition Value of Foods</a>
-                <br>
-            </p>
-        </div>
-        <div class="column middle2">
-            <b>Visualization sources</b>
-            <p>
-                
-            </p>
-        </div>
-        <div class="column right">
-            <b>Code Sources</b>
-            <p>
+        <div class="bottom">
+            <div id="vis-container"></div>
+            <svg width="660" height="660" id="svg2"></svg>
+            <script type="text/javascript" src="pictograph.js"></script>
 
-            </p>
         </div>
     </div>
-</div>
-    
+
+    <div class="note">
+        <div class="author">
+            <h4><br>Created by</h4>
+            <p>
+                Fernando Rivero Chau (friveroc@ucsc.edu)<br>
+                Mominah Khan (motkhan@ucsc.edu)<br>
+                Mrinmoyee Mishra (mrmishra@ucsc.edu)<br>
+                Joshua Revilla (jtrevill@ucsc.edu)<br>
+                in collaboration with Suresh K Lodha</p>
+            <p>Github Link: <a href="https://were1708.github.io/WaterThose/">https://were1708.github.io/WaterThose/</a>
+            </p>
+            <h4><br>Designed for</h4>
+            <p>CSE 163: Data Programming for Visualization, Fall 2022</p>
+        </div>
+
+
+        <div class="row">
+            <div class="column left">
+                <b>Files Submitted</b>
+                <p>index.html<br>index.css</p>
+            </div>
+            <div class="column middle1">
+                <b>Data Sources</b>
+                <p>
+                    <a href="https://waterfootprint.org/media/downloads/Mekonnen-Hoekstra-2011-WaterFootprintCrops.pdf">The
+                        water
+                        footprint of crops and derived crop products</a>
+                    <br>
+                    <a
+                        href="https://waterfootprint.org/media/downloads/Mekonnen-Hoekstra-2012-WaterFootprintFarmAnimalProducts.pdf">Water
+                        Footprint of Farm Animal Products</a>
+                    <br>
+                    <a href="https://www.nutritionvalue.org"> Nutrition Value of Foods</a>
+                    <br>
+                </p>
+            </div>
+            <div class="column middle2">
+                <b>Visualization sources</b>
+                <p>
+
+                </p>
+            </div>
+            <div class="column right">
+                <b>Code Sources</b>
+                <p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
