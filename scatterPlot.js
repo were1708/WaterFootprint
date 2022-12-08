@@ -61,10 +61,10 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             "<table>" + "<td colspan = 3 style = 'text-align:center'>" + d.food + "</td>" + " </tr>" 
             + "<tr>" + "<td style = 'text-align:left'>" + 'Percentage' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + d.waterPercentage + " %" + "</td>" + "</tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'Gallons for a pound of yield' + "</td>" +
+            "<td style = 'text-align:right'>" + d.waterPercentage + " Calories per pound of food" + "</td>" + "</tr>" 
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Water for a pound of yield' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons per pound of yield" + "</td>" + "</tr>" + "</tr>"
+            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons of water per pound of yield" + "</td>" + "</tr>" + "</tr>"
             )
             .style("left", (d3.event.pageX) + "px")		
             .style("top", (d3.event.pageY - 28) + "px");
