@@ -176,6 +176,7 @@ function update(id) {
     })
 }
 
+// updates the tooltip page when the viewer first loads the page
 function updateTooltip (id) {
     
     yAxisLabel.remove()
