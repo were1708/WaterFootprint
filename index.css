@@ -80,7 +80,7 @@ h1 {
     font-size:28px;
     display: inline-block; 
     vertical-align:top;
-    max-width: 30%;
+    max-width: 35%;
     color: #033f63;
   } 
 
@@ -88,8 +88,9 @@ h1 {
     font-size:28px;
     display: inline-block; 
     vertical-align:top;
-    max-width: 30%;
+    max-width: 35%;
     color: #033f63;
+    padding-left: 30px
   } 
 
 div.tooltip {	

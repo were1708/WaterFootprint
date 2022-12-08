@@ -19,10 +19,12 @@ var makeVis = function(data) {
 
 
     //background rectangle
-    svg.append("rect").attr("fill","#fff1e0")
+    svg.append("rect").attr("fill","#f7f4ed")
         .attr("width",660)
         .attr("height",660)
-        .attr('stroke', "#28666e");
+        .attr('stroke', "#28666e")
+        .attr("stroke-width", '4');
+    
 
     //specify the number of columns and rows for pictogram layout
     var numCols = 20;
