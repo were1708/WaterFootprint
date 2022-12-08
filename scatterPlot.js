@@ -133,12 +133,18 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
 
         xText = svgScatter.append("text")
         .attr("class", "x label")
-        .attr("y", height + 30)
+        .attr("y", height + 40)
         .attr("x", width/2)
         // these lines position the label
         .style("text-anchor", "middle")
-        .attr("font-size", "12px")
-        .text("Gallons per pound of yield");
+        .style("opacity", 0)
+        .attr("font-size", "14px")
+        .text("Gallons of water per pound of yield");
+
+        xText.transition()
+        .duration(1000)
+        .delay(500)
+        .style("opacity", 1)
 
         // y-axis
         gY = svgScatter.append("g")
@@ -154,15 +160,19 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         yText = svgScatter.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
-        .attr("y", -50)
-        .attr("x", -50)
+        .attr("y", -55)
+        .attr("x", -110)
         // these lines position the label
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .attr("font-size", "12px")
-        .text("Percentage of total water usage");
+        .style("opacity", 0)
+        .attr("font-size", "14px")
+        .text("Calories per pound of food");
 
-
+        yText.transition()
+        .duration(1000)
+        .delay(500)
+        .style("opacity", 1)
 
 });
 }
