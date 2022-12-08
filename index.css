@@ -89,6 +89,7 @@ h2.top_text {
     vertical-align:top;
     max-width: 30%;
     color: #033f63;
+    text-align: left;
   } 
 
 .inlineTextLeft { 
@@ -97,6 +98,7 @@ h2.top_text {
     vertical-align:top;
     max-width: 30%;
     color: #033f63;
+    text-align: left
   } 
 
 div.tooltip {	
