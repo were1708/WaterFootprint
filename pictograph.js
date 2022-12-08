@@ -19,7 +19,10 @@ var makeVis = function(data) {
 
 
     //background rectangle
-    svg.append("rect").attr("fill","#fff1e0").attr("width",660).attr("height",660);
+    svg.append("rect").attr("fill","#fff1e0")
+        .attr("width",660)
+        .attr("height",660)
+        .attr('stroke', "#28666e");
 
     //specify the number of columns and rows for pictogram layout
     var numCols = 20;
@@ -36,7 +39,6 @@ var makeVis = function(data) {
     //generate a d3 range for the total number of required elements
     var myIndex=d3.range(numCols*numRows);
 
-        
     //text element to display number of icons highlighted
     svg.append("text")
         .attr("class","number")
@@ -47,7 +49,6 @@ var makeVis = function(data) {
         .attr("fill", "#bb6d82")
         .text("482")
         .attr("transform", "translate(0,0) scale(1, 3)");
-    
     
     svg.append("text")
         .attr("id","txtState")
@@ -132,7 +133,7 @@ var makeVis = function(data) {
 
     var dropdown = d3.select("#selectButton")
         .on("change", dropdownChange);
-
+    
     dropdown
         .selectAll("myOptions")
         .data(foodNames)
