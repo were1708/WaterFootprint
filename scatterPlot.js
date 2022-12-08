@@ -2,7 +2,8 @@ function rowConverter(data) {
     return {
         food: data.Food_Product,
         waterPercentage: data.Water_Percentage,
-        waterFootprint: data.Water_Footprint
+        waterFootprint: data.Water_Footprint,
+        type: data.type
     }
 }
 
@@ -10,6 +11,10 @@ var margin = {left: 60, right: 0, top: 50, bottom: 50 };
 width = 900 - margin.left -margin.right;
 height = 700 - margin.top - margin.bottom;
 
+
+var colorScale = d3.scaleOrdinal()
+.domain(["carb", "protein", "fat"])
+.range(["#2e75f0", "#3d0b85", "#0db8b8"])
 
 var svgScatter = d3.select("#svg1")
 .append("svg")
@@ -49,10 +54,17 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
-            .attr("r", 5)
-            .attr("cx", function(d) {return xScale(d.waterFootprint);})
-            .attr("cy", function(d) {return yScale(d.waterPercentage);})
-            .on("mouseover", function(d) { // mouse over for tool tip
+            .style("fill", function(d) {return colorScale(d.type)})
+            .attr("r", 5);
+            
+            view.transition()
+            .delay(function(d,i){return(i*3)})
+            .duration(1000)
+            .attr("cx", function (d) { return xScale(d.waterFootprint); } )
+            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
+
+
+            view.on("mouseover", function(d) { // mouse over for tool tip
             div.transition()
             .duration(200)
             .style("opacity", .9) // makes the div visible 
@@ -61,16 +73,16 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             "<table>" + "<td colspan = 3 style = 'text-align:center'>" + d.food + "</td>" + " </tr>" 
             + "<tr>" + "<td style = 'text-align:left'>" + 'Percentage' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + d.waterPercentage + " %" + "</td>" + "</tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'Gallons for a pound of yield' + "</td>" +
+            "<td style = 'text-align:right'>" + d.waterPercentage + " Calories per pound of food" + "</td>" + "</tr>" 
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Water for a pound of yield' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons per pound of yield" + "</td>" + "</tr>" + "</tr>"
+            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons of water per pound of yield" + "</td>" + "</tr>" + "</tr>"
             )
             .style("left", (d3.event.pageX) + "px")		
             .style("top", (d3.event.pageY - 28) + "px");
-            })
+            });
 
-            .on("mouseout", function(d) { // when the mouse leaves the food entry
+            view.on("mouseout", function(d) { // when the mouse leaves the food entry
                 div.transition()		
                 .duration(500)		
                 .style("opacity", 0); // this hides the div            
@@ -82,15 +94,13 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var xAxis = d3.axisBottom(xScale).tickPadding(2);
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
 
-
-        var zoom = d3.zoom()
-        .scaleExtent([.5, 32])
-        .on("zoom", zoomed);
-
         // x-axis
         var gX = svgScatter.append("g")
         .attr("class", "x axis")
+        .transition()
+        .duration(1000)
         .attr("transform", "translate(0," + height + ")")
+
         .call(xAxis)
 
         svgScatter.append("text")
@@ -105,6 +115,8 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         // y-axis
         var gY = svgScatter.append("g")
         .attr("class", "y axis")
+        .transition()
+        .duration(1000)
         .call(yAxis)
         svgScatter.append("text")
         .attr("class", "label")
@@ -118,15 +130,5 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .text("Percentage of total water usage");
 
 
-        svgScatter.call(zoom);
 
-        function zoomed() {
-            view.attr("transform", d3.event.transform); // moves the circles
-            var new_xScale = d3.event.transform.rescaleX(xScale);
-            var new_yScale = d3.event.transform.rescaleY(yScale);
-            gX.call(xAxis.scale(new_xScale));
-            gY.call(yAxis.scale(new_yScale));
-            gX.call(xAxis.scale(d3.event.transform.rescaleX(xScale))); // scales the x axis while zooming and moving
-            gY.call(yAxis.scale(d3.event.transform.rescaleY(yScale))); // scales the y axis while zooming and moving
-          }
 });
