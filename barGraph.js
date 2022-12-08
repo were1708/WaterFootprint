@@ -34,7 +34,7 @@ var yAxisLabel = svg.append("text")
         .attr("x", -100)
         .attr("font-size", "12px")
         .attr("transform", "rotate(-90)") 
-        .text("Amount of Calories per 50 gallons of water"); 
+//        .text("Amount of Calories per 50 gallons of water"); 
 
 var formatDecimal = d3.format(",.2f");
 
@@ -83,9 +83,10 @@ var colorGrad = d3.scaleSequential().domain([1,0])
 // update function that is called when a button is pressed
 function update(id) {
     yAxisLabel.remove()
+//    yAxisLabel.remove()
+//    yAxisLabel.remove()
     // calls the csv file data
     d3.csv("barGraphData.csv", function(data) {
-        
         // identifies which units to add depending on the button pressed
         var units = "";
         if (id == "Mass") {
@@ -169,5 +170,78 @@ function update(id) {
     })
 }
 
+function updateTooltip (id) {
+    
+    yAxisLabel.remove()
+//    yAxisLabel.remove()
+//    yAxisLabel.remove()
+    // calls the csv file data
+    d3.csv("barGraphData.csv", function(data) {
+        
+        // identifies which units to add depending on the button pressed
+        var units = "";
+        if (id == "Mass") {
+            units = "lbs/50gal"
+        } else if (id == "Calories") {
+            units = "cal/50gal"
+        } else {
+            units = "grams/50gal"
+        }
+        
+        // defines the domain of the x axis
+        xScale.domain(data.map(function(d){ return d.Food; }));
+        // defines the domain of the y axis, from 0 to the max value
+        yScale.domain([0,d3.max(data, function(d) {return +d[id] })]);
+        
+        // bright colors: purple, blue, teal, green, yellow
+        var color = d3.scaleSequential().domain([1,d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolateViridis);
+        
+        // draws the y axis for transitions between buttons
+        yAxisDraw.transition().duration(1000).call(d3.axisLeft(yScale));
+        
+        // temporary placeholder for chart drawing
+        var drawChart = svg.selectAll("rect").data(data)
+    
+        var mouseover = function(d) {
+            div2
+                    .transition()
+                    .duration(200)
+                    .style('opacity', 0.9);
+                  div2 
+                      .html(id)
+            
+        }
+        
+        
+        // draws the bar chart
+        drawChart
+        .enter().append("rect")
+ 
+        drawChart.on('mouseover', function(d, i){
+            div2
+            .transition()
+            .duration(200)
+            .style('opacity', 0.9);
+            div2
+            .html("<table>" 
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + id + " in " + "</td>" + " </tr>"  
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + d.Food + ": </td>" + " </tr>"
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + formatDecimal(d[id]) + "</td>" + " </tr>" 
+                + "<tr>" + "<td colspan = 3 style = 'text-align:center'>" + units + "</td>" + " </tr>" 
+                 )
+            .style('left', d3.event.pageX + 'px')
+            .style('top', d3.event.pageY - 28 + 'px');
+        })
+        .on('mouseout', function(d, i){
+            div2
+            .transition()
+            .duration(500)
+            .style('opacity', 0);
+        });
+
+    })
+    
+}
+
 update('Mass')
-update('Mass')
+updateTooltip('Mass')
