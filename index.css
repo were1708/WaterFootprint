@@ -1,9 +1,19 @@
 h1 {
-    color: blue;
-    font-size: 70px
+    color: #28666e;
+    font-size: 70px;
+    padding: 0;
+    margin-top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
-
+.header {
+    padding: 0;
+    width: 40%;
+    outline: 2px solid #28666e;
+}
 
 .iconPlain  {
     fill: rgba(65, 106, 156, 0.5);
@@ -37,7 +47,7 @@ h1 {
 
 
 .note {
-    background-color: aliceblue;
+    background-color: #b5b682;
     position: relative;
     right: 0px;
     font-size: 16px;
@@ -47,6 +57,7 @@ h1 {
 .center {
   margin: auto;
   width: 90%;
+  padding-top: 15px;
 }
 
 .centerLast {
@@ -66,18 +77,19 @@ h1 {
   } 
 
 .inlineTextRight {
-    font-size:30px;
+    font-size:28px;
     display: inline-block; 
     vertical-align:top;
     max-width: 30%;
+    color: #033f63;
   } 
 
 .inlineTextLeft { 
-    font-size:30px;
+    font-size:28px;
     display: inline-block; 
     vertical-align:top;
     max-width: 30%;
-    
+    color: #033f63;
   } 
 
 div.tooltip {	
@@ -142,9 +154,10 @@ div2.tooltip2 {
 
 
 .button {
-    background-color: #482475;
-    border-color: #440154;
+    background-color: #28666e;
+    border-color: #28666e;
     border-radius: 10px;
+    border-style: solid;
     width: 70px;
     height: 30px;
     font-weight: bold;
@@ -152,14 +165,14 @@ div2.tooltip2 {
 }
 
 .button:hover{
-    background-color:#2a788e;
-     border-color: #355f8d;
+    background-color:#7c9885;
+     border-color: #7c9885;
 }
 
 .button:focus{
-    background-color:#bddf26;
-    border-color: #7ad151;
-    color: #482475;
+    background-color:royalblue;
+    border-color: royalblue;
+    color: whitesmoke;
 
 .dot {
     stroke: #000;
