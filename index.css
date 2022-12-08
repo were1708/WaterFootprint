@@ -6,7 +6,7 @@ h1 {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 10px;
-    padding-left: 10px;
+    padding-left: 0px;
 }
 h2.top_text {
     color: #1b5259;
@@ -15,7 +15,11 @@ h2.top_text {
 .header {
     padding: 0;
     width: 40%;
+}
+
+.boxed {
     outline: 2px solid #28666e;
+    outline-offset: 8px;
 }
 
 .iconPlain  {
@@ -60,7 +64,7 @@ h2.top_text {
 .center {
   margin: auto;
   width: 90%;
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .centerLast {
@@ -145,6 +149,15 @@ div.tooltip {
 }
 
 div2.tooltip2 {
+    position: absolute;			
+    width: 350x;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;	
+/*
   color: white;
   position: absolute;
   text-align: left;
@@ -154,6 +167,7 @@ div2.tooltip2 {
   background: rgba(0,0,0,.8);
   border: 2px solid black;
   pointer-events: none;
+*/
 }
 
 
@@ -173,7 +187,7 @@ div2.tooltip2 {
      border-color: #7c9885;
 }
 
-.button:focus{
+.button:focus {
     background-color:royalblue;
     border-color: royalblue;
     color: whitesmoke;
