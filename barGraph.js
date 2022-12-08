@@ -102,8 +102,12 @@ function update(id) {
         // defines the domain of the y axis, from 0 to the max value
         yScale.domain([0,d3.max(data, function(d) {return +d[id] })]);
         
+        var maxVal = d3.max(data, function(d) {return +d[id] }) * 1/3
         // bright colors: purple, blue, teal, green, yellow
-        var color = d3.scaleSequential().domain([1,d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolateViridis);
+        var color = d3.scaleSequential().domain([d3.min(data, function(d) {return +d[id] }),d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolatePuBuGn);
+        
+        
+        
         
         yAxisLabel = svg.append("text")
         .attr("class", "ylabel")
@@ -142,6 +146,8 @@ function update(id) {
             .attr("width", xScale.bandwidth())
             .attr("height", function(d) { return height - yScale(d[id]); })
             .attr("fill", function(d){return color(d[id]);})
+             .style("stroke", "#28666e")
+        .style("stroke-width", 1)
             .style('cursor', 'pointer') 
         
         
@@ -194,7 +200,8 @@ function updateTooltip (id) {
         yScale.domain([0,d3.max(data, function(d) {return +d[id] })]);
         
         // bright colors: purple, blue, teal, green, yellow
-        var color = d3.scaleSequential().domain([1,d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolateViridis);
+        var color = d3.scaleSequential().domain([1,d3.max(data, function(d) {return +d[id] })]).interpolator(d3.interpolatePuRd);
+
         
         // draws the y axis for transitions between buttons
         yAxisDraw.transition().duration(1000).call(d3.axisLeft(yScale));
