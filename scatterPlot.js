@@ -31,11 +31,17 @@ console.log(div);
 
 
 
+function doFilter(type) {
+    console.log(type)
 
 
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
-    
+    console.log(data)
+
     function filterNodes(type) {
+        if (type == "all") {
+            return data
+        }
         var filterNodes = data.filter((node) => node.type === type);
         return filterNodes;
     }
@@ -44,7 +50,8 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
     percentage = []
     footprints = []
     // we do this in order to find the max value so we can set x and y domains!
-
+    data = filterNodes(type);
+    console.log(data)
     for (x of data) { // loop through all the rows
         percentage.push(parseFloat(x.waterPercentage)) // append the gdp
         footprints.push(parseFloat(x.waterFootprint)) // append the ecc
@@ -142,3 +149,5 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
 
 
 });
+}
+doFilter("all")
