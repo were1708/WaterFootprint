@@ -6,7 +6,7 @@ h1 {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 10px;
-    padding-left: 10px;
+    padding-left: 0px;
 }
 h2.top_text {
     color: #1b5259;
@@ -15,7 +15,11 @@ h2.top_text {
 .header {
     padding: 0;
     width: 40%;
+}
+
+.boxed {
     outline: 2px solid #28666e;
+    outline-offset: 8px;
 }
 
 .iconPlain  {
