@@ -50,9 +50,15 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             .enter().append("circle")
             .attr("class", "dot")
             .attr("r", 5)
-            .attr("cx", function(d) {return xScale(d.waterFootprint);})
-            .attr("cy", function(d) {return yScale(d.waterPercentage);})
-            .on("mouseover", function(d) { // mouse over for tool tip
+
+            view.transition()
+            .delay(function(d,i){return(i*3)})
+            .duration(2000)
+            .attr("cx", function (d) { return xScale(d.waterFootprint); } )
+            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
+
+
+            view.on("mouseover", function(d) { // mouse over for tool tip
             div.transition()
             .duration(200)
             .style("opacity", .9) // makes the div visible 
@@ -68,9 +74,9 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             )
             .style("left", (d3.event.pageX) + "px")		
             .style("top", (d3.event.pageY - 28) + "px");
-            })
+            });
 
-            .on("mouseout", function(d) { // when the mouse leaves the food entry
+            view.on("mouseout", function(d) { // when the mouse leaves the food entry
                 div.transition()		
                 .duration(500)		
                 .style("opacity", 0); // this hides the div            
@@ -81,11 +87,6 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
 
         var xAxis = d3.axisBottom(xScale).tickPadding(2);
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
-
-
-        var zoom = d3.zoom()
-        .scaleExtent([.5, 32])
-        .on("zoom", zoomed);
 
         // x-axis
         var gX = svgScatter.append("g")
@@ -118,15 +119,5 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .text("Percentage of total water usage");
 
 
-        svgScatter.call(zoom);
 
-        function zoomed() {
-            view.attr("transform", d3.event.transform); // moves the circles
-            var new_xScale = d3.event.transform.rescaleX(xScale);
-            var new_yScale = d3.event.transform.rescaleY(yScale);
-            gX.call(xAxis.scale(new_xScale));
-            gY.call(yAxis.scale(new_yScale));
-            gX.call(xAxis.scale(d3.event.transform.rescaleX(xScale))); // scales the x axis while zooming and moving
-            gY.call(yAxis.scale(d3.event.transform.rescaleY(yScale))); // scales the y axis while zooming and moving
-          }
 });
