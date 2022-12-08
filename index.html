@@ -14,7 +14,7 @@
     <div class="center">
         <div class="inline">
             <!-- this viz needs to be in a div for tooltip to work -->
-            <div class="inline">
+            <div class="inline" style="padding-right: 30px">
                 <svg width="960" height="700" id="svg1"></svg>
                 <script type="text/javascript" src="scatterPlot.js"></script>
             </div>
@@ -78,7 +78,7 @@
                       <button type="button" onclick="update('Mass')" class="button" name="mass">Mass</button>
                     </div>
                 </div>
-                <div class="inline">
+                <div class="inline" style="float: right">
                         <svg width="960" height="700" id="svg2"></svg>
                         <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
                         <script type="text/javascript" src="barGraph.js"></script>  
@@ -88,9 +88,14 @@
     </div>
     <!-- palce holder for second visualization! ^ -->
 
-    <div>
-        <svg width="660" height="660" id="svg3"></svg>
-        <select id="selectButton"></select>
+    <div class="center">
+        <div class="inline" style="padding-right: 30px">
+        <svg width="800" height="800" id="svg3"></svg>
+        </div>
+        <div class="inlineTextRight">
+            <p>Here we will write some text about our second visualization. Maybe we can center the text a bit and also add an image or logo?</p>
+            <select id="selectButton"></select>
+        </div>
         <script type="text/javascript" src="pictograph.js"></script>
     </div>
     <!-- palce holder for third visualization! ^ -->

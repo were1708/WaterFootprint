@@ -49,6 +49,11 @@ h1 {
   width: 90%;
 }
 
+.centerLast {
+  margin: auto;
+  width: 50%;
+}
+
 .container {
     position: relative;
     width: 200px;
@@ -71,7 +76,6 @@ h1 {
     font-size:30px;
     display: inline-block; 
     vertical-align:top;
-    padding-left: 40px;
     width: 30%;
   } 
 
