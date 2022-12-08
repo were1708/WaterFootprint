@@ -1,4 +1,4 @@
-function rowConverter(data) {
+function rowConverter1(data) {
     return {
         food: data.Food_Product,
         waterPercentage: data.Water_Percentage,
@@ -27,17 +27,25 @@ var div = d3.select("#div1")
 .append("div")	
 .attr("class", "tooltip")
 .style("opacity", 0);
-console.log(div);
 
 
+var view = svgScatter.selectAll(".dot");
+var gX = svgScatter.append("g")
+var gY = svgScatter.append("g")
+var xText = svgScatter.append("text")
+var yText = svgScatter.append("text")
 
 function doFilter(type) {
     console.log(type)
 
 
-d3.csv("scatterData.csv", rowConverter, function(error, data) {
+d3.csv("scatterData.csv", rowConverter1, function(error, data) {
     console.log(data)
-
+    view.remove()
+    gX.remove()
+    gY.remove()
+    xText.remove()
+    yText.remove()
     function filterNodes(type) {
         if (type == "all") {
             return data
@@ -67,7 +75,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .range([height, 0]);
 
 
-        var view = svgScatter.selectAll(".dot")
+        view = svgScatter.selectAll(".dot")
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
@@ -112,41 +120,59 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
 
         // x-axis
-        var gX = svgScatter.append("g")
+        gX = svgScatter.append("g")
         .attr("class", "x axis")
-        .transition()
+        // .transition()
+        // .duration(1000)
+        // .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+        gX.transition()
         .duration(1000)
         .attr("transform", "translate(0," + height + ")")
 
-        .call(xAxis)
-
-        svgScatter.append("text")
+        xText = svgScatter.append("text")
         .attr("class", "x label")
-        .attr("y", height + 30)
+        .attr("y", height + 40)
         .attr("x", width/2)
         // these lines position the label
         .style("text-anchor", "middle")
-        .attr("font-size", "12px")
-        .text("Gallons per pound of yield");
+        .style("opacity", 0)
+        .attr("font-size", "14px")
+        .text("Gallons of water per pound of yield");
+
+        xText.transition()
+        .duration(1000)
+        .delay(500)
+        .style("opacity", 1)
 
         // y-axis
-        var gY = svgScatter.append("g")
+        gY = svgScatter.append("g")
         .attr("class", "y axis")
-        .transition()
+        // .transition()
+        // .duration(1000)
+        
+
+        gY.transition()
         .duration(1000)
-        .call(yAxis)
-        svgScatter.append("text")
+        .call(d3.axisLeft(yScale))
+
+        yText = svgScatter.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
-        .attr("y", -50)
-        .attr("x", -50)
+        .attr("y", -55)
+        .attr("x", -110)
         // these lines position the label
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .attr("font-size", "12px")
-        .text("Percentage of total water usage");
+        .style("opacity", 0)
+        .attr("font-size", "14px")
+        .text("Calories per pound of food");
 
-
+        yText.transition()
+        .duration(1000)
+        .delay(500)
+        .style("opacity", 1)
 
 });
 }
