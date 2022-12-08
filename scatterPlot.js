@@ -6,9 +6,9 @@ function rowConverter(data) {
     }
 }
 
-var margin = {left: 100, right: 80, top: 50, bottom: 50 };
+var margin = {left: 60, right: 0, top: 50, bottom: 50 };
 width = 960 - margin.left -margin.right;
-height = 600 - margin.top - margin.bottom;
+height = 700 - margin.top - margin.bottom;
 
 
 var svgScatter = d3.select("#svg1")

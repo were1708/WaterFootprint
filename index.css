@@ -24,7 +24,7 @@ h1 {
     text-anchor:left;
     font-size:22px;
     font-family:sans-serif,Helvetica,Arial;
-    font-weight:bold;
+    font-weight:bold; 
 }
 
 #txtState   {
@@ -43,6 +43,37 @@ h1 {
     font-size: 16px;
     text-align: center;
 }
+
+.center {
+  margin: auto;
+  width: 90%;
+}
+
+.container {
+    position: relative;
+    width: 200px;
+    height: 680px;
+}
+
+.inline { 
+    display: inline-block; 
+    vertical-align:top;
+  } 
+
+.inlineTextRight {
+    font-size:30px;
+    display: inline-block; 
+    vertical-align:top;
+    width: 30%;
+  } 
+
+.inlineTextLeft { 
+    font-size:30px;
+    display: inline-block; 
+    vertical-align:top;
+    padding-left: 40px;
+    width: 30%;
+  } 
 
 div.tooltip {	
     position: absolute;			
@@ -130,20 +161,10 @@ div2.tooltip2 {
   }
 
 
-  #sliderDiv  {
-    margin:10px;
-    margin-top:30px;
-    height:15px;
-    width:300px;
-}
-
 #svg2 {
     padding:10px;
     float:left;
 }
-
-
-
 
 rect    {
     fill:#fff1e0;   

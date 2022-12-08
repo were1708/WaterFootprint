@@ -7,7 +7,7 @@ var makeVis = function(data) {
     console.log(data)    
 
     //create svg element
-    var svg=d3.select("#svg2").append("svg").attr("viewBox","0 0 660 660");
+    var svg=d3.select("#svg3").append("svg").attr("viewBox","0 0 660 660");
 
      //define an icon store it in svg <defs> elements as a reusable component - this geometry can be generated from Inkscape, Illustrator or similar
     svg.append("defs")
@@ -85,24 +85,6 @@ var makeVis = function(data) {
             })
             .classed("iconPlain",true);
 
-//    //create a jquery slider to control the pictogram         
-//     $( "#sliderDiv" ).slider({
-//          orientation: "horizontal",
-//          min: 0,
-//          max: numCols*numRows,
-//          value: 0,
-//          slide: function( event, ui ) {
-//            d3.select("#txtValue").text(ui.value);
-//            d3.selectAll("use").attr("class",function(d,i){
-//               if (d<ui.value)  {
-//                   return "iconSelected";
-//               }    else    {
-//                   return "iconPlain";
-//               }
-//            });
-//          }
-//     });
-
     // Handler for dropdown value change
     var dropdownChange = function() {
         var newFood = d3.select(this).property('value')
@@ -148,8 +130,7 @@ var makeVis = function(data) {
 
     var foodNames = data.map(function(food) {return food.Food_Product;});
 
-    var dropdown = d3.select("#vis-container")
-        .append('select')
+    var dropdown = d3.select("#selectButton")
         .on("change", dropdownChange);
 
     dropdown
