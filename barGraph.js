@@ -5,7 +5,7 @@
 //
 
 var margin = {left: 100, right: 0, top: 50, bottom: 80 };
-width = 960 - margin.left -margin.right;
+width = 860 - margin.left -margin.right;
 height = 700 - margin.top - margin.bottom;
     
 var svg = d3.select("#svg2").append("svg")

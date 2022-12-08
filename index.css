@@ -1,6 +1,6 @@
 h1 {
     color: blue;
-    text-align: center
+    font-size: 70px
 }
 
 
@@ -69,14 +69,15 @@ h1 {
     font-size:30px;
     display: inline-block; 
     vertical-align:top;
-    width: 30%;
+    max-width: 30%;
   } 
 
 .inlineTextLeft { 
     font-size:30px;
     display: inline-block; 
     vertical-align:top;
-    width: 30%;
+    max-width: 30%;
+    
   } 
 
 div.tooltip {	
