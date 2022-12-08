@@ -22,6 +22,7 @@ var div = d3.select("#div1")
 .append("div")	
 .attr("class", "tooltip")
 .style("opacity", 0);
+console.log(div);
 
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
     // initilize some empty arrays to populate with values!
