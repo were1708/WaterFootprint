@@ -80,13 +80,14 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
             .enter().append("circle")
             .attr("class", "dot")
             .style("fill", function(d) {return colorScale(d.type)})
+            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
             .attr("r", 5);
             
             view.transition()
             .delay(function(d,i){return(i*3)})
             .duration(1000)
             .attr("cx", function (d) { return xScale(d.waterFootprint); } )
-            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
+            
 
 
             view.on("mouseover", function(d) { // mouse over for tool tip
