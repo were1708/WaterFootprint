@@ -80,13 +80,14 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
             .enter().append("circle")
             .attr("class", "dot")
             .style("fill", function(d) {return colorScale(d.type)})
+            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
             .attr("r", 5);
             
             view.transition()
             .delay(function(d,i){return(i*3)})
             .duration(1000)
             .attr("cx", function (d) { return xScale(d.waterFootprint); } )
-            .attr("cy", function (d) { return yScale(d.waterPercentage); } )
+            
 
 
             view.on("mouseover", function(d) { // mouse over for tool tip
@@ -122,14 +123,14 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // x-axis
         gX = svgScatter.append("g")
         .attr("class", "x axis")
-        // .transition()
-        // .duration(1000)
-        // .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + height + ")")
+        .style("opacity", 0)
         .call(xAxis);
 
         gX.transition()
         .duration(1000)
-        .attr("transform", "translate(0," + height + ")")
+        .style("opacity", 1)
+        
 
         xText = svgScatter.append("text")
         .attr("class", "x label")
@@ -149,13 +150,12 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // y-axis
         gY = svgScatter.append("g")
         .attr("class", "y axis")
-        // .transition()
-        // .duration(1000)
-        
+        .style("opacity", 0)
+        .call(yAxis)
 
         gY.transition()
         .duration(1000)
-        .call(d3.axisLeft(yScale))
+        .style("opacity", 1)
 
         yText = svgScatter.append("text")
         .attr("class", "label")
