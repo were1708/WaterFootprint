@@ -116,7 +116,7 @@ function update(id) {
         .attr("x", -50)
         .attr("font-size", "13px")
         .attr("transform", "rotate(-90)") 
-        .text("Amount of " +id+ " per 50 gallons of water"); 
+        .text("Amount of " +id+ " per 50 gallons of water (grams)"); 
         
         // draws the y axis for transitions between buttons
         yAxisDraw.transition().duration(1000).call(d3.axisLeft(yScale));

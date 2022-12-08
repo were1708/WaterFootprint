@@ -188,21 +188,41 @@ div2.tooltip2 {
      border-color: #7c9885;
 }
 
-.button:focus {
-    background-color:royalblue;
-    border-color: royalblue;
-    color: whitesmoke;
-
 .dot {
     stroke: #000;
   }
 
+.button:focus {
+    background-color:royalblue;
+    border-color: royalblue;
+    color: whitesmoke;
+}
+
+#carb:focus {
+    background-color:#2e75f0;
+    border-color: #2e75f0;
+    color: whitesmoke;
+}
+
+#protein:focus {
+    background-color:#3d0b85;
+    border-color: #3d0b85;
+    color: whitesmoke;
+}
+
+#fat:focus {
+    background-color:#0db8b8;
+    border-color: #0db8b8;
+    color: whitesmoke;
+}
+
+#all:focus {
+    background-color:#898a5c;
+    border-color: #898a5c;
+    color: whitesmoke;
+}
 
 #svg2 {
     padding:10px;
     float:left;
-}
-
-rect    {
-    fill:#fff1e0;   
 }
