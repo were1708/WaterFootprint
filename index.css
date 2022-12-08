@@ -27,17 +27,17 @@ h2.top_text {
 }
 
 .iconSelected  {
-    fill:#bb6d82;   
+    fill:#28666e;   
 }
 
 .number  {
-    fill:#bb6d82;   
+    fill:#28666e;   
     font-size:90px;
     text-align: center;
     text-anchor:center;
 }
 #txtName    {
-    fill:#bb6d82;
+    fill:#28666e;
     text-anchor:left;
     font-size:22px;
     font-family:sans-serif,Helvetica,Arial;
@@ -45,7 +45,7 @@ h2.top_text {
 }
 
 #txtState   {
-    fill:#bb6d82;
+    fill:#28666e;
     text-anchor:left;
     font-size:22px;
     font-family:sans-serif,Helvetica,Arial;
@@ -87,7 +87,7 @@ h2.top_text {
     font-size:28px;
     display: inline-block; 
     vertical-align:top;
-    max-width: 35%;
+    max-width: 30%;
     color: #033f63;
   } 
 
@@ -95,9 +95,8 @@ h2.top_text {
     font-size:28px;
     display: inline-block; 
     vertical-align:top;
-    max-width: 35%;
+    max-width: 30%;
     color: #033f63;
-    padding-left: 30px
   } 
 
 div.tooltip {	
