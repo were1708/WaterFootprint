@@ -32,6 +32,8 @@ var div = d3.select("#div1")
 var view = svgScatter.selectAll(".dot");
 var gX = svgScatter.append("g")
 var gY = svgScatter.append("g")
+var xText = svgScatter.append("text")
+var yText = svgScatter.append("text")
 
 function doFilter(type) {
     console.log(type)
@@ -42,7 +44,8 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
     view.remove()
     gX.remove()
     gY.remove()
-
+    xText.remove()
+    yText.remove()
     function filterNodes(type) {
         if (type == "all") {
             return data
@@ -119,12 +122,16 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // x-axis
         gX = svgScatter.append("g")
         .attr("class", "x axis")
-        .transition()
+        // .transition()
+        // .duration(1000)
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+        gX.transition()
         .duration(1000)
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
 
-        svgScatter.append("text")
+        xText = svgScatter.append("text")
         .attr("class", "x label")
         .attr("y", height + 30)
         .attr("x", width/2)
@@ -136,10 +143,14 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // y-axis
         gY = svgScatter.append("g")
         .attr("class", "y axis")
-        .transition()
+        // .transition()
+        // .duration(1000)
+        .call(yAxis);
+
+        gY.transition()
         .duration(1000)
-        .call(yAxis)
-        svgScatter.append("text")
+
+        yText = svgScatter.append("text")
         .attr("class", "label")
         .attr("transform", "rotate(-90)")
         .attr("y", -50)
