@@ -90,11 +90,11 @@ function update(id) {
         // identifies which units to add depending on the button pressed
         var units = "";
         if (id == "Mass") {
-            units = "lbs/50gal"
+            units = "lbs"
         } else if (id == "Calories") {
-            units = "cal/50gal"
+            units = "cal"
         } else {
-            units = "grams/50gal"
+            units = "grams"
         }
         
         // defines the domain of the x axis
@@ -116,7 +116,7 @@ function update(id) {
         .attr("x", -50)
         .attr("font-size", "13px")
         .attr("transform", "rotate(-90)") 
-        .text("Amount of " +id+ " per 50 gallons of water (grams)"); 
+        .text("Amount of " +id+ " per 50 gallons of water (" + units + ")"); 
         
         // draws the y axis for transitions between buttons
         yAxisDraw.transition().duration(1000).call(d3.axisLeft(yScale));
@@ -188,11 +188,11 @@ function updateTooltip (id) {
         // identifies which units to add depending on the button pressed
         var units = "";
         if (id == "Mass") {
-            units = "lbs/50gal"
+            units = "lbs"
         } else if (id == "Calories") {
-            units = "cal/50gal"
+            units = "cal"
         } else {
-            units = "grams/50gal"
+            units = "grams"
         }
         
         // defines the domain of the x axis
