@@ -29,7 +29,17 @@ var div = d3.select("#div1")
 .style("opacity", 0);
 console.log(div);
 
+
+
+
+
 d3.csv("scatterData.csv", rowConverter, function(error, data) {
+    
+    function filterNodes(type) {
+        var filterNodes = data.filter((node) => node.type === type);
+        return filterNodes;
+    }
+    
     // initilize some empty arrays to populate with values!
     percentage = []
     footprints = []
