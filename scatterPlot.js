@@ -97,12 +97,12 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
             
             div.html( // html for the tool tip
             "<table>" + "<td colspan = 3 style = 'text-align:center'>" + d.food + "</td>" + " </tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'Percentage' + "</td>" +
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Calories per pound of food' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + d.waterPercentage + " Calories per pound of food" + "</td>" + "</tr>" 
-            + "<tr>" + "<td style = 'text-align:left'>" + 'Water for a pound of yield' + "</td>" +
+            "<td style = 'text-align:right'>" + d.waterPercentage + " Calories" + "</td>" + "</tr>" 
+            + "<tr>" + "<td style = 'text-align:left'>" + 'Gallons of water for a pound of yield' + "</td>" +
             "<td style = 'text-align:center'>" + ':' + "</td>" + 
-            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons of water per pound of yield" + "</td>" + "</tr>" + "</tr>"
+            "<td style = 'text-align:right'>" + "" + d.waterFootprint + " Gallons" + "</td>" + "</tr>" + "</tr>"
             )
             .style("left", (d3.event.pageX) + "px")		
             .style("top", (d3.event.pageY - 28) + "px");
