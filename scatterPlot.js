@@ -1,4 +1,4 @@
-function rowConverter(data) {
+function rowConverter1(data) {
     return {
         food: data.Food_Product,
         waterPercentage: data.Water_Percentage,
@@ -27,16 +27,21 @@ var div = d3.select("#div1")
 .append("div")	
 .attr("class", "tooltip")
 .style("opacity", 0);
-console.log(div);
 
 
+var view = svgScatter.selectAll(".dot");
+var gX = svgScatter.append("g")
+var gY = svgScatter.append("g")
 
 function doFilter(type) {
     console.log(type)
 
 
-d3.csv("scatterData.csv", rowConverter, function(error, data) {
+d3.csv("scatterData.csv", rowConverter1, function(error, data) {
     console.log(data)
+    view.remove()
+    gX.remove()
+    gY.remove()
 
     function filterNodes(type) {
         if (type == "all") {
@@ -67,7 +72,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .range([height, 0]);
 
 
-        var view = svgScatter.selectAll(".dot")
+        view = svgScatter.selectAll(".dot")
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
@@ -112,12 +117,11 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         var yAxis = d3.axisLeft(yScale).tickPadding(2).ticks(9);
 
         // x-axis
-        var gX = svgScatter.append("g")
+        gX = svgScatter.append("g")
         .attr("class", "x axis")
         .transition()
         .duration(1000)
         .attr("transform", "translate(0," + height + ")")
-
         .call(xAxis)
 
         svgScatter.append("text")
@@ -130,7 +134,7 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         .text("Gallons per pound of yield");
 
         // y-axis
-        var gY = svgScatter.append("g")
+        gY = svgScatter.append("g")
         .attr("class", "y axis")
         .transition()
         .duration(1000)
