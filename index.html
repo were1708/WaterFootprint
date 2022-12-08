@@ -13,6 +13,16 @@
         <div class="header">
             <h1>Water Footprint</h1>
         </div>
+        <h2 class="top_text"> It takes a large amount of water and energy to produce the foods we eat every day.
+            <br>
+            According to the UN, agriculture accounts for around 70% of global freshwater
+            withdrawals, and by 2030 the demand for water will exceed supply by 40%.</h2>
+        <h2 class="top_text">The water footprint of any food product is how much freshwater is needed
+            to produce some amount of that food.
+            <br>
+            Knowing the water footprint of the
+            foods you choose to eat can help you better understand how some of your
+            daily choices impact water resources and the environment.</h2>
         <div class="inline">
             <!-- this viz needs to be in a div for tooltip to work -->
             <div class="inline" style="padding-right: 30px" id="div1">
@@ -20,7 +30,11 @@
                 <script type="text/javascript" src="scatterPlot.js"></script>
             </div>
                 <div class="inlineTextRight">
-                    <p>Here we will write some text about our first visualization. Maybe we can center the text a bit and also add an image or logo?</p>
+                    <p>Compare how much water is needed to produce, and how many calories are
+                        produced, in 1 lb of various foods...
+                        <br>
+                        Note most foods higher in protein are on the far right,
+                        needing more water to produce.</p>
                                 <div >
                     <button class="button">Carb</button>
                     <button class="button">Protein</button>
@@ -69,7 +83,9 @@
             <div class="inline">
                 <div class="inlineTextLeft">
                     <p>Second Visualization: Amount of macro-nutrients per 50 gallons of water</p>
-                    <p>With 50 gallons of water, how much of each food can be produced? Compare how many calories and grams of protein/fat/fiber you would get from this amount of food. </p>
+                    <p>With 50 gallons of water, how much of each food can be produced?
+                        <br>
+                        Compare how many calories and grams of protein/fat/fiber you would get from this amount of food... </p>
                     <div class="row">
                       <button type="button" onclick="update('Fat')" class="button" name="fat">Fat</button>
                       <button type="button" onclick="update('Fiber')" class="button" name="fiber">Fiber</button>
@@ -93,7 +109,8 @@
             <svg width="800" height="800" id="svg3"></svg>
         </div>
         <div class="inlineTextRight">
-            <p>Here we will write some text about our second visualization. Maybe we can center the text a bit and also add an image or logo?</p>
+            <p>See what the water footprint of each food is equal
+                to in terms of a day's worth of drinking water...</p>
             <select id="selectButton" style="width: 150px; height: 25px"></select>
         </div>
         <script type="text/javascript" src="pictograph.js"></script>
