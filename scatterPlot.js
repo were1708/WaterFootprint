@@ -2,7 +2,8 @@ function rowConverter(data) {
     return {
         food: data.Food_Product,
         waterPercentage: data.Water_Percentage,
-        waterFootprint: data.Water_Footprint
+        waterFootprint: data.Water_Footprint,
+        type: data.type
     }
 }
 
@@ -10,6 +11,10 @@ var margin = {left: 60, right: 0, top: 50, bottom: 50 };
 width = 900 - margin.left -margin.right;
 height = 700 - margin.top - margin.bottom;
 
+
+var colorScale = d3.scaleOrdinal()
+.domain(["carb", "protein", "fat"])
+.range(["#2e75f0", "#3d0b85", "#0db8b8"])
 
 var svgScatter = d3.select("#svg1")
 .append("svg")
@@ -49,11 +54,12 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
             .data(data)
             .enter().append("circle")
             .attr("class", "dot")
-            .attr("r", 5)
-
+            .style("fill", function(d) {return colorScale(d.type)})
+            .attr("r", 5);
+            
             view.transition()
             .delay(function(d,i){return(i*3)})
-            .duration(2000)
+            .duration(1000)
             .attr("cx", function (d) { return xScale(d.waterFootprint); } )
             .attr("cy", function (d) { return yScale(d.waterPercentage); } )
 
@@ -91,7 +97,10 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         // x-axis
         var gX = svgScatter.append("g")
         .attr("class", "x axis")
+        .transition()
+        .duration(1000)
         .attr("transform", "translate(0," + height + ")")
+
         .call(xAxis)
 
         svgScatter.append("text")
@@ -106,6 +115,8 @@ d3.csv("scatterData.csv", rowConverter, function(error, data) {
         // y-axis
         var gY = svgScatter.append("g")
         .attr("class", "y axis")
+        .transition()
+        .duration(1000)
         .call(yAxis)
         svgScatter.append("text")
         .attr("class", "label")
