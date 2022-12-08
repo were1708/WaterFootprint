@@ -123,14 +123,14 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // x-axis
         gX = svgScatter.append("g")
         .attr("class", "x axis")
-        // .transition()
-        // .duration(1000)
-        // .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + height + ")")
+        .style("opacity", 0)
         .call(xAxis);
 
         gX.transition()
         .duration(1000)
-        .attr("transform", "translate(0," + height + ")")
+        .style("opacity", 1)
+        
 
         xText = svgScatter.append("text")
         .attr("class", "x label")
@@ -150,13 +150,12 @@ d3.csv("scatterData.csv", rowConverter1, function(error, data) {
         // y-axis
         gY = svgScatter.append("g")
         .attr("class", "y axis")
-        // .transition()
-        // .duration(1000)
-        
+        .style("opacity", 0)
+        .call(yAxis)
 
         gY.transition()
         .duration(1000)
-        .call(d3.axisLeft(yScale))
+        .style("opacity", 1)
 
         yText = svgScatter.append("text")
         .attr("class", "label")
