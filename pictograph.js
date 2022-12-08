@@ -65,14 +65,6 @@ var makeVis = function(data) {
         .attr("y",yPadding)
         .attr("dy",60)
         .text(function(d) { return "Per Water Needed to Produce a Pound of Wheat gluten:"})
-    
-    svg.append("text")
-        .attr("id","total")
-        .attr("x",15)
-        .attr("y",640)
-        .text("5000")
-        .attr("fill", "#bb6d82")
-        .style("font-size","22px")
         
     //create group element and create an svg <use> element for each icon
     svg.append("g")
@@ -160,7 +152,15 @@ var makeVis = function(data) {
         .attr("xlink:href", "#iconCustom")
         .attr("x", 315)
         .attr("y", 625)
-        .attr("fill", "#bb6d82")
+        .attr("fill", "#28666e")
+    
+    svg.append("text")
+        .attr("id","total")
+        .attr("x",15)
+        .attr("y",640)
+        .text("5000")
+        .attr("fill", "#28666e")
+        .style("font-size","22px")
     
     svg.append("text")
         .style("font-size", "16px")
