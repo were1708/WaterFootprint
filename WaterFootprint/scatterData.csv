@@ -1,0 +1,34 @@
+Food_Product,Water_Percentage,Water_Footprint,type
+Wheat gluten,1678,241.321122,carb
+Oats,1721,236.169768,carb
+Potatoes,263,37.908682,carb
+Beans,1547,667.430558,protein
+Chickpeas,1715,551.723222,protein
+Lentils,1597,775.873164,protein
+Almonds,2753,2125.92417,fat
+Walnuts,2966,1225.75808,fat
+Soy milk,195,497.039618,carb
+Asparagus,91,283.9849,carb
+Spinach,104,38.569112,carb
+Tomatoes,82,28.266404,carb
+Pumpkins,118,44.380896,carb
+Bananas,404,104.34794,carb
+Oranges,213,73.96816,carb
+Apples,236,108.574692,carb
+Cherries,286,211.865944,carb
+Peaches,191,120.19826,carb
+Strawberries,141,45.833842,carb
+Blueberries,259,111.61267,carb
+Watermelons,136,31.04021,carb
+Figs,336,442.4881,carb
+Mangoes,272,237.7548,carb
+Avocados,726,261.662366,fat
+Dates,1279,300.759822,carb
+Chocolate,2712,2271.350856,fat
+Beef,898,2036.10569,protein
+Sheep meat,830,1157.469618,protein
+Pig meat,1193,790.930968,protein
+Chicken meat,649,571.27195,protein
+Egg,649,431.26079,protien
+Milk,272,134.72772,protein
+Butter,3252,733.473558,fat
